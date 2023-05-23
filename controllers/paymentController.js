@@ -1,10 +1,10 @@
-import ClientService from "../services/ClientService.js";
+import paymentService from "../services/paymentService.js";
 
-export default class ClientController {
+export default class PaymentController {
     async create(req, res) {
         try {
-            const client = await ClientService.create(req.body);
-            res.status(200).json(client);
+            const payment = await paymentService.create(req.body);
+            res.status(200).json(payment);
         } catch (e) {
             res.status(500).json(e)
         }
@@ -12,8 +12,8 @@ export default class ClientController {
 
     async getAll(req, res) {
         try {
-            const clients = await ClientService.getAll();
-            return res.status(200).json(clients);
+            const payments = await paymentService.getAll();
+            return res.status(200).json(payments);
         }
         catch (e) {
             res.status(500).json(e)
@@ -22,8 +22,8 @@ export default class ClientController {
 
     async getOne(req, res) {
         try {
-            const client = await ClientService.getOne(req.params.id);
-            return res.status(200).json(client)
+            const payment = await paymentService.getOne(req.params.id);
+            return res.status(200).json(payment)
         }
         catch (e) {
             res.status(500).json(e)
@@ -32,7 +32,7 @@ export default class ClientController {
 
     async update(req, res) {
         try {
-            const updated = await ClientService.update(req.body);
+            const updated = await paymentService.update(req.body);
             return res.json(updated);
         }
         catch (error) {
@@ -42,7 +42,7 @@ export default class ClientController {
 
     async delete(req, res) {
         try {
-            const deleted = await ClientService.delete(req.params.id)
+            const deleted = await paymentService.delete(req.params.id)
             return res.json(deleted);
         }
         catch (error) {
