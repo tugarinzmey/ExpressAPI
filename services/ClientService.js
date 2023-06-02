@@ -1,4 +1,5 @@
 import Client from "../models/Client.js";
+import Payment from "../models/Payment.js";
 
 class ClientService {
     async create(client) {
@@ -32,6 +33,7 @@ class ClientService {
             throw new Error("There is no id provided")
         }
         const deleted = await Client.findByIdAndDelete(id);
+        await Payment.deleteMany({clientId: id})
         return deleted;
     }
 }

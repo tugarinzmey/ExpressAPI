@@ -1,4 +1,5 @@
 import Service from "../models/Service.js";
+import Payment from "../models/Payment.js";
 
 class ServiceService {
     async create(service) {
@@ -32,6 +33,7 @@ class ServiceService {
             throw new Error("There is no id provided")
         }
         const deleted = await Service.findByIdAndDelete(id);
+        await Payment.deleteMany({ serviceId: id })
         return deleted;
     }
 }
